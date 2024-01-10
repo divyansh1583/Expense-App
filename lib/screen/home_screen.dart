@@ -19,6 +19,12 @@ class _HomeScreenState extends State<HomeScreen> {
       date: DateTime.now(),
       category: CategoryExpense.work,
     ),
+    ExpenseModel(
+      title: "Goa Trip",
+      amount: 20000,
+      date: DateTime.now(),
+      category: CategoryExpense.travel,
+    ),
   ];
 
   void addExpense(ExpenseModel value) {
