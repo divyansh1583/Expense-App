@@ -1,11 +1,17 @@
 import 'package:expense_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 
 var kColorScheme = ColorScheme.fromSeed(seedColor: Colors.redAccent);
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((value) {
   runApp(
     const MyApp(),
   );
+  // s
 }
 
 class MyApp extends StatelessWidget {
@@ -72,14 +78,14 @@ class MyApp extends StatelessWidget {
             foregroundColor: kColorScheme.onSecondaryContainer,
           ),
         ),
-        textTheme: TextTheme(
-          titleLarge: TextStyle(
-            fontSize: 16,
-            color: kColorScheme.onPrimaryContainer,
-            fontWeight: FontWeight.bold,
-          ),
-          // titleSmall: TextStyle(color: Colors.black),
-        ),
+        // textTheme: TextTheme(
+        //   titleLarge: TextStyle(
+        //     fontSize: 16,
+        //     color: kColorScheme.onPrimaryContainer,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        //   // titleSmall: TextStyle(color: Colors.black),
+        // ),
       ),
       home: const HomeScreen(),
     );

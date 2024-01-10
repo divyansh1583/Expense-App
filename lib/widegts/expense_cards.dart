@@ -19,10 +19,19 @@ class ExpensesList extends StatelessWidget {
           background: Card(
             color: kColorScheme.error,
             margin: Theme.of(context).cardTheme.margin,
+            child: const Row(
+              children: [
+                SizedBox(width: 14),
+                Icon(Icons.delete_outline),
+                Spacer(),
+                Icon(Icons.delete_outline),
+                SizedBox(width: 14)
+              ],
+            ),
           ),
           key: ValueKey(expenseList[index]),
           onDismissed: (direction) => ondeleteExpense(expenseList[index]),
-          //Adding card to giveCard type styling provided by flutter
+          //Adding card to give it aCard type styling provided by flutter
           child: Card(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -55,23 +64,6 @@ class ExpensesList extends StatelessWidget {
             ),
           ),
         );
-        // child: ListTile(
-        //   title: Text(expenseList[index].title),
-        //   subtitle: Text('₹ ${expenseList[index].amount.toString()}'),
-        //   trailing: SizedBox(
-        //     width: 110,
-        //     child: Row(
-        //       children: [
-        //         categoryIcons[expenseList[index].category]!,
-        //         const SizedBox(width: 5),
-        //         Text(formatter.format(expenseList[index].date)),
-        //       ],
-        //     ),
-        //   ),
-        //   tileColor: Colors.purple[100],
-        // ),
-        // Text(expenseList[index].title);
-        // );
       },
     );
   }

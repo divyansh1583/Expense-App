@@ -5,14 +5,14 @@ import 'package:intl/intl.dart';
 
 final formatter = DateFormat('DD/MM/yyyy');
 
-class NewExpense extends StatefulWidget {
-  const NewExpense({super.key, required this.addExpense});
+class AddExpense extends StatefulWidget {
+  const AddExpense({super.key, required this.addExpense});
   final void Function(ExpenseModel) addExpense;
   @override
-  State<NewExpense> createState() => _NewExpenseState();
+  State<AddExpense> createState() => _AddExpenseState();
 }
 
-class _NewExpenseState extends State<NewExpense> {
+class _AddExpenseState extends State<AddExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;

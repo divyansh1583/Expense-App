@@ -13,18 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ExpenseModel> expenseList = [
-    // ExpenseModel(
-    //   title: "Udemy Courses",
-    //   amount: 998,
-    //   date: DateTime.now(),
-    //   category: CategoryExpense.work,
-    // ),
-    // ExpenseModel(
-    //   title: "Goa Trip",
-    //   amount: 20000,
-    //   date: DateTime.now(),
-    //   category: CategoryExpense.travel,
-    // ),
+    ExpenseModel(
+      title: "Udemy Courses",
+      amount: 998,
+      date: DateTime.now(),
+      category: CategoryExpense.work,
+    ),
   ];
 
   void addExpense(ExpenseModel value) {
@@ -55,10 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    // print(MediaQuery.of(context).size.height);
     Widget mainContent = expenseList.isEmpty
         ? const Center(
             child: Text(
-            'No expense was found! Try adding a new one.',
+            'No expense was found Try adding a new one.',
             // style: TextStyle(color: Colors.white.withOpacity(0.5)),
           ))
         : ExpensesList(
@@ -66,32 +62,45 @@ class _HomeScreenState extends State<HomeScreen> {
             ondeleteExpense: deleteExpense,
           );
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense App'),
-        // backgroundColor: const Color.fromARGB(255, 55, 21, 114),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            tooltip: 'Add Expense',
-            //Add modal sheet here by directly calling new expense here
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AddExpense(addExpense: addExpense)),
-              );
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Chart(expenses: expenseList),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Expense App'),
+          // backgroundColor: const Color.fromARGB(255, 55, 21, 114),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Add Expense',
+              //Add modal sheet here by directly calling new expense here
+              onPressed: () {
+                // showModalBottomSheet(
+                //     useSafeArea: true,
+                //     isScrollControlled: true,
+                //     context: context,
+                //     builder: (context) => AddScreen(addExpense: addExpense));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddScreen(addExpense: addExpense)),
+                );
+              },
+            ),
+          ],
+        ),
+        body: width < 600
+            ? Column(
+                children: [
+                  Chart(expenses: expenseList),
+                  Expanded(
+                    child: mainContent,
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(child: Chart(expenses: expenseList)),
+                  Expanded(
+                    child: mainContent,
+                  ),
+                ],
+              ));
   }
 }
